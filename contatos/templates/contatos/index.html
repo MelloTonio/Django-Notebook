@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block 'conteudo'%}
+<h1  style="text-align:center;" class="mt-5 text-monospace"><i class="fas fa-angle-right"></i><strong> Agenda do Mello </strong><i class="fas fa-angle-left"></i></h1><br>
+<div style="text-align: center;"><p class="shadow p-3 mb-5 bg-light rounded border border-dark " style="display:inline-block; justify-content:center;" ><img  src="{% static 'vendor/100-gecs.jpg' %}" style="text-align:center" alt="My image" width="320" height="200"></p></div>
+
+        
+        <table class="table shadow p-3 mb-5 bg-white rounded p-3 mb-2 bg-gradient-light text-dark">
+          <thead>
+            <tr class="p-3 mb-2 bg-secondary text-white">
+              <th><i class="fas fa-id-card"></i> Id</th>
+              <th><i class="fas fa-male"></i> Nome</th>
+              <th><i class="fas fa-male"></i> Sobrenome</th>
+              <th><i class="fas fa-mobile-alt"></i> Telefone</th>
+              <th><i class="fas fa-address-book"></i> Categoria</th>
+            </tr>
+          </thead >
+          <tbody  class="p-3 mb-2 bg-light text-dark">
+              {% for contato in contatos %}
+              {% if contato.mostrar %}
+            <tr>
+              <td>{{ contato.id }}</td>
+              <td>
+                <a href="{% url 'ver_contato' contato.id %}"> {{ contato.nome|capfirst }}</a>
+                
+                
+              </td>
+              <td>{{ contato.sobrenome|capfirst }}</td>
+              <td>{{ contato.telefone }}</td>
+              <td><a href="{% url 'ver_categoria' contato.id %}"> {{ contato.categoria|capfirst }}</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination" >
+            {% for pagina in contatos.paginator.page_range %}
+            {% if contatos.number == pagina %}
+            <li class="page-item active">
+              <a class="page-link" href="?p={{ pagina }}">{{ pagina }}</a></li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?p={{ pagina }}">{{ pagina }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+        
+{%endblock%}
+{%block 'footer'%}<footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="height:65px;">
+  <div class="container text-center">
+    <small>Made with Django v.3.0.5 - By: Antônio Mello</small>
+  </div>
+</footer>{%endblock%}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{%block 'conteudo'%}
+
+<h1 style="text-align:center">Bem vindo a categoria</h1>
+<h1 style="text-align:center">{{ contato.categoria|capfirst }}</h1><br>
+
+
+<h2  style="text-align:left">Niveis de Categorias:</h2><br>
+<li style="font-size: 30px;">Lider Supremo</li>
+<p> Apenas o mais apto a ter este cargo a possui, sendo ela a maior categoria possivel</p>
+<li style="font-size: 30px;">Soldados</li>
+<p> Os mais leais ajudantes do Lider Supremo</p>
+<li style="font-size: 30px;">Servo</li>
+<p> A categoria mais horrenda, serve a tudo e a todos não possuindo nenhuma honra</p>
+
+
+{%endblock%}
